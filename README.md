@@ -28,6 +28,19 @@ To set up a custom sorter for your specific party ranking, follow these steps:
 1. **Update `songList.json`:**
    - Replace the content of `songList.json` with your own list of songs. Each song should have an `id`, `anime`, `name`, `video`, and optionally an `mp3` field.
    - Links should be either animemusicquiz catbox links or YouTube links.
+   - Converting hyperlinks to URLs:
+   ```javascript
+    function GETURL(input) {
+        const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+        const myFormula = SpreadsheetApp.getActiveRange().getFormula();
+        const matches = (myFormula.indexOf("(") !== -1 && myFormula.indexOf(")") !== -1) ? myFormula.slice(myFormula.indexOf("(") + 1, myFormula.indexOf(")")) : undefined;
+        const range = sheet.getRange(matches);
+        const linkUrls = range.getRichTextValues().map(ia => ia.map(row => row.getLinkUrl()));
+        return linkUrls;
+    }
+    ```
+   - Regex because I'm lazy:
+   `(\d+)\t(.+)?\t(.+)\t\t(.+)\n?` to `{"id": $1, "anime": "$2", "name": "$3", "video": "$4", "mp3": null },\n`
    - Example:
      ```json
      [
