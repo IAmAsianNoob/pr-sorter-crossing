@@ -76,6 +76,9 @@ function showDuel(id1, id2) {
             if (music.video.includes("youtube.com")) {
                 const videoId = new URL(music.video).searchParams.get("v");
                 videoElement = `<iframe src="https://www.youtube-nocookie.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>`;
+            } else if (music.video.includes("youtu.be")) {
+                const videoId = new URL(music.video).pathname.slice(1);
+                videoElement = `<iframe src="https://www.youtube-nocookie.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>`;
             } else if (music.video.endsWith(".webm") || music.video.endsWith(".mp4")) {
                 if (music.video.includes("animemusicquiz")) {
                     videoElement = `<video controls><source src="https://${region}dist.animemusicquiz.com/${music.video.split('/').pop()}" type="video/webm"></video>`;
