@@ -70,17 +70,17 @@ function showDuel(id1, id2) {
 
         let videoElement;
 
-        if (!music.link && !music.mp3) {
+        if (!music.video && !music.mp3) {
             videoElement = "<div>Video and MP3 not available</div>";
-        } else if (music.link && (video || music.mp3 === null)) {
-            if (music.link.includes("youtube.com")) {
-                const videoId = new URL(music.link).searchParams.get("v");
+        } else if (music.video && (video || music.mp3 === null)) {
+            if (music.video.includes("youtube.com")) {
+                const videoId = new URL(music.video).searchParams.get("v");
                 videoElement = `<iframe src="https://www.youtube-nocookie.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>`;
-            } else if (music.link.endsWith(".webm") || music.link.endsWith(".mp4")) {
-                if (music.link.includes("animemusicquiz")) {
-                    videoElement = `<video controls><source src="https://${region}dist.animemusicquiz.com/${music.link.split('/').pop()}" type="video/webm"></video>`;
+            } else if (music.video.endsWith(".webm") || music.video.endsWith(".mp4")) {
+                if (music.video.includes("animemusicquiz")) {
+                    videoElement = `<video controls><source src="https://${region}dist.animemusicquiz.com/${music.video.split('/').pop()}" type="video/webm"></video>`;
                 } else {
-                    videoElement = `<video controls><source src="${music.link}" type="video/webm"></video>`;
+                    videoElement = `<video controls><source src="${music.video}" type="video/webm"></video>`;
                 }
             } else {
                 videoElement = "<div>Vidéo non disponible</div>";
@@ -97,7 +97,7 @@ function showDuel(id1, id2) {
 
         card.innerHTML = `
       ${videoElement}
-      <div class="artist">${music.artist}</div>
+      <div class="anime">${music.anime}</div>
       <div class="song">${music.songname}</div>
     `;
 
@@ -321,8 +321,8 @@ function result() {
         tr.appendChild(tdId);
 
         const tdAnimeName = document.createElement('td');
-        tdAnimeName.textContent = music.artist;
-        tdAnimeName.title = music.artist;
+        tdAnimeName.textContent = music.anime;
+        tdAnimeName.title = music.anime;
         tr.appendChild(tdAnimeName);
 
         const tdMusicName = document.createElement('td');
