@@ -98,7 +98,7 @@ function showDuel(id1, id2) {
         card.innerHTML = `
       ${videoElement}
       <div class="anime">${music.anime}</div>
-      <div class="song">${music.songname}</div>
+      <div class="song">${music.song}</div>
     `;
 
         const button = document.createElement('button');
@@ -326,8 +326,8 @@ function result() {
         tr.appendChild(tdAnimeName);
 
         const tdMusicName = document.createElement('td');
-        tdMusicName.textContent = music.songname;
-        tdMusicName.title = music.songname;
+        tdMusicName.textContent = music.song;
+        tdMusicName.title = music.song;
         tr.appendChild(tdMusicName);
 
         const tdRank = document.createElement('td');
